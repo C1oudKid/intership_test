@@ -1,28 +1,43 @@
 package institution.interlink;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import institution.University;
 import person.Student;
 
 public class Internship {
     
     private String name;
-    private ArrayList<Student> studentsList;
-    
-    public Internship(String name) {
+    private Student student;
+    private University university;
+    private List<Student> interns;
+
+
+    public Internship(String name, University university) {
         this.name = name;
-        studentsList = new ArrayList<>();
+        this.university = university;
+        interns = new ArrayList<>();
     }
 
-    public void set_student(Student student) {
-        if (student.knowledge.level > student.university.avg)
-            studentsList.add(student);
+    public void set_student(List students) {
+        this.interns = students;
     }
 
-    public String get_students() {
-        StringBuilder builder = new StringBuilder();
-        for (Student student : studentsList) {
-            builder.append(student.name).append("\n");
+    public List<Student> add_intern(){
+        for (Student student: university.get_students()) {
+            if(student.get_knowledge().get_lvl() > university.get_avg()) {
+                interns.add(student);
+            }
         }
-        return builder.toString();
+        return interns;
+    }
+
+    public String get_interns() {
+        String allInterns = "";
+        for(Student intern : add_intern()){
+            allInterns += intern.get_name() + "\n";
+        }
+        return allInterns;
     }
 }
