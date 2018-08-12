@@ -1,6 +1,8 @@
 package institution;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import person.Student;
 
 public class University {
@@ -8,24 +10,28 @@ public class University {
     
     private String name;
     private ArrayList<Student> studentsList;
+    private List<Student> students = students = new ArrayList<>();
     
-    public double avg;
+    private double avg;
     
     public University(String name) {
         this.name = name;
-        studentsList = new ArrayList<>();
     }
 
-    public void add_student(Student student) {
-        studentsList.add(student);
-        student.set_university(this);
-        get_avg();
+    public void add_student(List students) {
+        this.students = students;
     }
-    
-    private void get_avg() {
+
+    public double get_avg() {
         int counter = 0;
-        for (Student student : studentsList)
-            counter += student.knowledge.level;
-         avg = (double) counter / studentsList.size();
+        for (Student student : students)
+            counter += student.get_knowledge().get_lvl();
+        avg = (double) counter / students.size();
+        return avg;
+    }
+
+    public List<Student> get_students(){
+        return students;
+
     }
 }
