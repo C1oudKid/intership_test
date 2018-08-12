@@ -34,10 +34,10 @@ public class Internship {
     }
 
     public String get_interns() {
-        String allInterns = "";
+        String all_interns = "";
         for(Student intern : add_intern()){
-            allInterns += intern.get_name() + "\n";
+            all_interns += intern.get_name() + "\n";
         }
-        return allInterns;
+        return all_interns;
     }
 }
