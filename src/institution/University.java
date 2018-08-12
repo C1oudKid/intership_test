@@ -9,7 +9,6 @@ public class University {
 
     
     private String name;
-    private ArrayList<Student> studentsList;
     private List<Student> students = students = new ArrayList<>();
     
     private double avg;
